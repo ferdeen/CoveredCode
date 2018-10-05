@@ -12,5 +12,12 @@ namespace CoveredCode.Tests
             var covered = new Covered();
             new Action(() => covered.SquareRoot(-25)).Should().Throw<NotImplementedException>();
         }
+
+        [Fact]
+        public void SquareRoot_ThrowsOnNonIntegerRoot()
+        {
+            var covered = new Covered();
+            new Action(() => covered.SquareRoot(37)).Should().Throw<NotImplementedException>();
+        }
     }
 }
