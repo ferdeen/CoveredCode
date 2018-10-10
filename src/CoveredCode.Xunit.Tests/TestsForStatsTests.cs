@@ -7,6 +7,7 @@ namespace CoveredCode.Xunit.Tests
     public class TestsForStatsTests
     {
         [Retry(5, 1500)]
+        [Trait("Unstable", "True")]
         public void DodgyTestToRetry_RandomlyFails()
         {
             var random = new Random(DateTime.Now.Millisecond);
@@ -16,6 +17,7 @@ namespace CoveredCode.Xunit.Tests
         }
 
         [Fact]
+        [Trait("Unstable", "True")]
         public void DodgyTest_RandomlyFails()
         {
             var random = new Random(DateTime.Now.Millisecond);
