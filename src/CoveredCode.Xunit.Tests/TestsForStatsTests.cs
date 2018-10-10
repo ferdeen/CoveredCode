@@ -1,20 +1,30 @@
 ﻿using System;
 using FluentAssertions;
 using Xunit;
-
+using Xunit.Sdk;
 namespace CoveredCode.Xunit.Tests
 {
     public class TestsForStatsTests
     {
-        [Fact]
-        public void DodgyTest_RandomlyFails()
+        [Retry(5, 1500)]
+        public void DodgyTestToRetry_RandomlyFails()
         {
             var random = new Random(DateTime.Now.Millisecond);
-            var shouldTestFail = random.Next(0, 100) > 70;
+            var shouldTestFail = random.Next(0, 100) > 50;
 
             shouldTestFail.Should().BeFalse();
         }
 
+        [Fact]
+        public void DodgyTest_RandomlyFails()
+        {
+            var random = new Random(DateTime.Now.Millisecond);
+            var shouldTestFail = random.Next(0, 100) > 50;
+
+            shouldTestFail.Should().BeFalse();
+        }
+
+        /*
         #region always working
         [Fact] public void Works001() { true.Should().BeTrue(); }
         [Fact] public void Works002() { true.Should().BeTrue(); }
@@ -118,5 +128,7 @@ namespace CoveredCode.Xunit.Tests
         [Fact] public void Works100() { true.Should().BeTrue(); }
 
         #endregion
+        */
     }
 }
+ 
